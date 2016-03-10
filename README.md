@@ -2,4 +2,4 @@ This is a repository for my college academic work. It's free for any modificatio
 you do not need my permission.
 
 For students in the class where this work was made, do not copy my code.
-You hurt yourself by copying my work.
+Seriously it's a bad idea.
