@@ -1,4 +1,6 @@
 // JUSTIFIES TEXT
+// Kyle Stoots
+// 2/24/2016
 
 #include <iostream> 
 #include <string>
@@ -11,13 +13,18 @@ int main() {
 	cout << "Input a string\n";
 	getline(cin, input);
 
-	char insertS = ' ';
-	char findS = ' ';
-	char findP = '.'; char findC = ',';
-	char findE = '!'; char findQ = '?';
+	char insertS = ' '; // USED FOR INSERTING SPACES
+	char findS = ' '; // USED FOR FINDING SPACES
+	char findP = '.'; // USED FOR FINDING PERIODS
+	char findC = ','; // USED FOR FINDING COMMAS
+	char findE = '!'; // USED FOR FINDING EXCLAMATION MARKS
+	char findQ = '?'; // USED FOR FINDING QUESTION MARKS
 
+	/*--------------------------------------------------------------------------------*/
 	// Punctuation Block
 	int position = 0;
+
+	// PUTS AN ADDITIONAL SPACE AFTER A PERIOD
 	if (input.size() < 80) {
 		position = input.find(findP);
 		while (position != string::npos) {
@@ -27,6 +34,7 @@ int main() {
 		}
 	}
 
+	// PUTS AN ADDITIONAL SPACE AFTER A COMMA
 	if (input.size() < 80) {
 		position = input.find(findC);
 		while (position != string::npos) {
@@ -36,6 +44,7 @@ int main() {
 		}
 	}
 
+	// PUTS AN ADDITIONAL SPACE AFTER A EXCLAMATION POINT
 	if (input.size() < 80) {
 		position = input.find(findE);
 		while (position != string::npos) {
@@ -45,6 +54,7 @@ int main() {
 		}
 	}
 
+	// PUTS AN ADDITIONAL SPACE AFTER A QUESTION MARK
 	if (input.size() < 80) {
 		position = input.find(findQ);
 		while (position != string::npos) {
@@ -54,7 +64,9 @@ int main() {
 		}
 	}
 	//End Punctuation Block
+	/*--------------------------------------------------------------------------------*/
 
+	/*--------------------------------------------------------------------------------*/
 	// Space Locations
 	int spaceLocations[80];
 	while (input.size() < 80) {
@@ -70,41 +82,53 @@ int main() {
 		for (int i = 0; i < input.find_last_of(findS); ++i) {
 			if (input.substr(i, 1) == " ") {
 				int chk = 0;
+
+				// SEARCHES FOR EXCLAMATION MARKS
 				for (int tmp = 0; tmp < 3; ++tmp) {
 					if (input.substr(i - tmp, 1) == "!")
 						chk = 1;
 				}
+
+				// SEARCHES FOR QUESTION MARKS
 				for (int tmp = 0; tmp < 3; ++tmp) {
 					if (input.substr(i - tmp, 1) == "?")
 						chk = 1;
 				}
+
+				// SEARCHES FOR PERIODS
 				for (int tmp = 0; tmp < 3; ++tmp) {
 					if (input.substr(i - tmp, 1) == ".")
 						chk = 1;
 				}
+
+				// SEARCHES FOR COMMAS
 				for (int tmp = 0; tmp < 3; ++tmp) {
 					if (input.substr(i - tmp, 1) == ",")
 						chk = 1;
 				}
+
+				// IF NO PUNCTUATION WAS FOUND, SAVE VALUE TO ARRAY
 				if (chk == 0) {
 					spaceLocations[localAssign] = i;
 					++localAssign;
 				}
 			}
 		}
-	}
 
-	// COUNTS THE TOTAL NUMBER OF VIABLE SPACES
-	int tmp = 0;
-	while (spaceLocations[tmp] > 0) {
-		++tmp;
-	}
+		// COUNTS THE TOTAL NUMBER OF VIABLE SPACES IN ARRAY
+		int tmp = 0;
+		while (spaceLocations[tmp] > 0) {
+			++tmp;
+		}
 
-	// SELECTS A POSITION AT RANDOM AND PUTS A SPACE THERE.
-	srand(time(nullptr));
-	int placement = rand() % tmp;
-	input.insert(spaceLocations[placement], 1, ' ');
+		// SELECTS A POSITION AT RANDOM AND PUTS A SPACE THERE.
+		srand(time(nullptr));
+		int placement = rand() % tmp;
+		input.insert(spaceLocations[placement], 1, ' ');
+	}
 	// End Space Locations
+	/*--------------------------------------------------------------------------------*/
 
+	// OUTPUTS JUSTIFIED TEXT
 	cout << input;
 }
