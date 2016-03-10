@@ -1,0 +1,110 @@
+// JUSTIFIES TEXT
+
+#include <iostream> 
+#include <string>
+#include <ctime>
+#include <cstdlib>
+using std::cin; using std::cout; using std::endl; using std::string;
+
+int main() {
+	string input;
+	cout << "Input a string\n";
+	getline(cin, input);
+
+	char insertS = ' ';
+	char findS = ' ';
+	char findP = '.'; char findC = ',';
+	char findE = '!'; char findQ = '?';
+
+	// Punctuation Block
+	int position = 0;
+	if (input.size() < 80) {
+		position = input.find(findP);
+		while (position != string::npos) {
+			++position;
+			input.insert(position, 1, insertS);
+			position = input.find(findP, position + 1);
+		}
+	}
+
+	if (input.size() < 80) {
+		position = input.find(findC);
+		while (position != string::npos) {
+			++position;
+			input.insert(position, 1, insertS);
+			position = input.find(findC, position + 1);
+		}
+	}
+
+	if (input.size() < 80) {
+		position = input.find(findE);
+		while (position != string::npos) {
+			++position;
+			input.insert(position, 1, insertS);
+			position = input.find(findE, position + 1);
+		}
+	}
+
+	if (input.size() < 80) {
+		position = input.find(findQ);
+		while (position != string::npos) {
+			++position;
+			input.insert(position, 1, insertS);
+			position = input.find(findQ, position + 1);
+		}
+	}
+	//End Punctuation Block
+
+	// Space Locations
+	int spaceLocations[80];
+	while (input.size() < 80) {
+
+		int localAssign = 0;
+
+		// EMPTY THE ARRAY
+		for (int i = 0; i < 80; ++i) {
+			spaceLocations[i] = -1;
+		}
+
+		// CHECK THE LOCATIONS OF THE SPACES FOR ADJACENT PUNCTUATION
+		for (int i = 0; i < input.find_last_of(findS); ++i) {
+			if (input.substr(i, 1) == " ") {
+				int chk = 0;
+				for (int tmp = 0; tmp < 3; ++tmp) {
+					if (input.substr(i - tmp, 1) == "!")
+						chk = 1;
+				}
+				for (int tmp = 0; tmp < 3; ++tmp) {
+					if (input.substr(i - tmp, 1) == "?")
+						chk = 1;
+				}
+				for (int tmp = 0; tmp < 3; ++tmp) {
+					if (input.substr(i - tmp, 1) == ".")
+						chk = 1;
+				}
+				for (int tmp = 0; tmp < 3; ++tmp) {
+					if (input.substr(i - tmp, 1) == ",")
+						chk = 1;
+				}
+				if (chk == 0) {
+					spaceLocations[localAssign] = i;
+					++localAssign;
+				}
+			}
+		}
+	}
+
+	// COUNTS THE TOTAL NUMBER OF VIABLE SPACES
+	int tmp = 0;
+	while (spaceLocations[tmp] > 0) {
+		++tmp;
+	}
+
+	// SELECTS A POSITION AT RANDOM AND PUTS A SPACE THERE.
+	srand(time(nullptr));
+	int placement = rand() % tmp;
+	input.insert(spaceLocations[placement], 1, ' ');
+	// End Space Locations
+
+	cout << input;
+}
