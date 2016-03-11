@@ -7,11 +7,11 @@
 #include <ctime>
 #include <cstdlib>
 #include <fstream>
-using std::cin; using std::cout; using std::endl; 
+using std::cin; using std::cout; using std::endl;
 using std::string; using std::ifstream; using std::ofstream;
 
 int main() {
-	
+
 	string fileName;
 	string input;
 	ofstream output;
@@ -23,67 +23,36 @@ int main() {
 
 	char insertS = ' '; // USED FOR INSERTING SPACES
 	char findS = ' '; // USED FOR FINDING SPACES
-	char findP = '.'; // USED FOR FINDING PERIODS
-	char findC = ','; // USED FOR FINDING COMMAS
-	char findE = '!'; // USED FOR FINDING EXCLAMATION MARKS
-	char findQ = '?'; // USED FOR FINDING QUESTION MARKS
+	string findPunc = "!?.,";	// USED FOR FINDING PUNCTUATION
+	const int max = 80;
 
 	while (getline(fin, input)) {
 		//--------------------------------------------------------------------------------
-		if ((input.size() < 80) && (input.size() > 40)) {
+		if ((input.size() < max) && (input.size() > (max/2))) {
 			// Punctuation Block
 			int position = 0;
+
 			// PUTS AN ADDITIONAL SPACE AFTER A PERIOD
-			if ((input.size() < 80)) {
-				position = input.find(findP);
+			if (input.size() < max) {
+				position = input.find_first_of(findPunc);
 				while (position != string::npos) {
 					++position;
 					input.insert(position, 1, insertS);
-					position = input.find(findP, position + 1);
-				}
-			}
-
-			// PUTS AN ADDITIONAL SPACE AFTER A COMMA
-			if (input.size() < 80) {
-				position = input.find(findC);
-				while (position != string::npos) {
-					++position;
-					input.insert(position, 1, insertS);
-					position = input.find(findC, position + 1);
-				}
-			}
-
-			// PUTS AN ADDITIONAL SPACE AFTER A EXCLAMATION POINT
-			if (input.size() < 80) {
-				position = input.find(findE);
-				while (position != string::npos) {
-					++position;
-					input.insert(position, 1, insertS);
-					position = input.find(findE, position + 1);
-				}
-			}
-
-			// PUTS AN ADDITIONAL SPACE AFTER A QUESTION MARK
-			if (input.size() < 80) {
-				position = input.find(findQ);
-				while (position != string::npos) {
-					++position;
-					input.insert(position, 1, insertS);
-					position = input.find(findQ, position + 1);
+					position = input.find_first_of(findPunc, position);
 				}
 			}
 		}
 		//End Punctuation Block
-		//--------------------------------------------------------------------------------
+	//--------------------------------------------------------------------------------
 
-		//--------------------------------------------------------------------------------
-		// Space Locations
-		int spaceLocations[80];	
-		while ((input.size() < 80) && (input.size() > 40)) {
+	//--------------------------------------------------------------------------------
+	// Space Locations
+		int spaceLocations[max];
+		while ((input.size() < max) && (input.size() > (max/2))) {
 			int localAssign = 0;
 
 			// EMPTY THE ARRAY
-			for (int i = 0; i < 80; ++i) {
+			for (int i = 0; i < max; ++i) {
 				spaceLocations[i] = -1;
 			}
 
@@ -94,25 +63,10 @@ int main() {
 
 					// SEARCHES FOR EXCLAMATION MARKS
 					for (int tmp = 0; tmp < 3; ++tmp) {
-						if (input.substr(i - tmp, 1) == "!")
-							chk = 1;
-					}
-
-					// SEARCHES FOR QUESTION MARKS
-					for (int tmp = 0; tmp < 3; ++tmp) {
-						if (input.substr(i - tmp, 1) == "?")
-							chk = 1;
-					}
-
-					// SEARCHES FOR PERIODS
-					for (int tmp = 0; tmp < 3; ++tmp) {
-						if (input.substr(i - tmp, 1) == ".")
-							chk = 1;
-					}
-
-					// SEARCHES FOR COMMAS
-					for (int tmp = 0; tmp < 3; ++tmp) {
-						if (input.substr(i - tmp, 1) == ",")
+						if ((input.substr(i - tmp, 1) == "!") ||
+							(input.substr(i - tmp, 1) == "?") ||
+							(input.substr(i - tmp, 1) == ".") ||
+							(input.substr(i - tmp, 1) == ","))
 							chk = 1;
 					}
 
@@ -133,9 +87,9 @@ int main() {
 			// SELECTS A POSITION AT RANDOM AND PUTS A SPACE THERE.
 			srand(time(nullptr));
 			int placement = rand() % tmp;
-			input.insert(spaceLocations[placement], 1, ' ');
-			
-			
+			input.insert(spaceLocations[placement], 1, insertS);
+
+
 		}
 		// End Space Locations
 		//--------------------------------------------------------------------------------
@@ -143,4 +97,4 @@ int main() {
 		output << input << endl;
 	}
 	output.close(); fin.close();
- }
+}
