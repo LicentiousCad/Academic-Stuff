@@ -9,64 +9,31 @@
 using std::cin; using std::cout; using std::endl; using std::string;
 
 int main() {
-	string input;
-	cout << "Input a string\n";
-	getline(cin, input);
+	string input = "Cotrary to popular belief, Lorem Ipsum is not simply random text. It has";
+	cout << input << endl;
+	//cout << "Input a string\n";
+	//getline(cin, input);
 
-	char insertS = ' '; // USED FOR INSERTING SPACES
-	char findS = ' '; // USED FOR FINDING SPACES
-	char findP = '.'; // USED FOR FINDING PERIODS
-	char findC = ','; // USED FOR FINDING COMMAS
-	char findE = '!'; // USED FOR FINDING EXCLAMATION MARKS
-	char findQ = '?'; // USED FOR FINDING QUESTION MARKS
+	char insertS = ' ';			// USED FOR INSERTING SPACES
+	char findS = ' ';			// USED FOR FINDING SPACES
+	string findPunc = "!?.,";	// USED FOR FINDING PUNCTUATION
+	const int max = 80;
 
 	//--------------------------------------------------------------------------------
 	// Punctuation Block
 	int position = 0;
 
 	// PUTS AN ADDITIONAL SPACE AFTER A PERIOD
-	if (input.size() < 80) {
-		position = input.find(findP);
+	if (input.size() < max) {
+		position = input.find_first_of(findPunc);
 		while (position != string::npos) {
 			++position;
 			input.insert(position, 1, insertS);
-			position = input.find(findP, position);
-		}
-	}
-
-	// PUTS AN ADDITIONAL SPACE AFTER A COMMA
-	if (input.size() < 80) {
-		position = input.find(findC);
-		while (position != string::npos) {
-			++position;
-			input.insert(position, 1, insertS);
-			position = input.find(findC, position);
-		}
-	}
-
-	// PUTS AN ADDITIONAL SPACE AFTER A EXCLAMATION POINT
-	if (input.size() < 80) {
-		position = input.find(findE);
-		while (position != string::npos) {
-			++position;
-			input.insert(position, 1, insertS);
-			position = input.find(findE, position);
-		}
-	}
-
-	// PUTS AN ADDITIONAL SPACE AFTER A QUESTION MARK
-	if (input.size() < 80) {
-		position = input.find(findQ);
-		while (position != string::npos) {
-			++position;
-			input.insert(position, 1, insertS);
-			position = input.find(findQ, position);
+			position = input.find_first_of(findPunc, position);
 		}
 	}
 	//End Punctuation Block
-	//--------------------------------------------------------------------------------
 
-	//--------------------------------------------------------------------------------
 	// Space Locations
 	int spaceLocations[80];
 	while (input.size() < 80) {
@@ -83,27 +50,9 @@ int main() {
 			if (input.substr(i, 1) == " ") {
 				int chk = 0;
 
-				// CHECK FOR EXCLAMATION MARKS
-				for (int tmp = 0; tmp < 3; ++tmp) {
-					if (input.substr(i - tmp, 1) == "!")
-						chk = 1;
-				}
-
-				// CHECK FOR QUESTION MARKS
-				for (int tmp = 0; tmp < 3; ++tmp) {
-					if (input.substr(i - tmp, 1) == "?")
-						chk = 1;
-				}
-
-				// CHECK FOR PERIODS
-				for (int tmp = 0; tmp < 3; ++tmp) {
-					if (input.substr(i - tmp, 1) == ".")
-						chk = 1;
-				}
-
-				// CHECK FOR COMMAS
-				for (int tmp = 0; tmp < 3; ++tmp) {
-					if (input.substr(i - tmp, 1) == ",")
+				// CHECK FOR PUNCTUATION MARKS
+				for (int tmp = 0; tmp < findPunc.size(); ++tmp) {
+					if (input.substr(i - tmp, 1) == findPunc.substr(tmp, 1))
 						chk = 1;
 				}
 
@@ -127,7 +76,6 @@ int main() {
 		input.insert(spaceLocations[placement], 1, ' ');
 	}
 	// End Space Locations
-	//--------------------------------------------------------------------------------
 
 	// OUTPUTS JUSTIFIED TEXT
 	cout << input;
