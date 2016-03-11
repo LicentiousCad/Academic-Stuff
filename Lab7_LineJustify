@@ -35,13 +35,13 @@ int main() {
 	//End Punctuation Block
 
 	// Space Locations
-	int spaceLocations[80];
-	while (input.size() < 80) {
+	int spaceLocations[max];
+	while (input.size() < max) {
 
 		int localAssign = 0;
 
 		// EMPTY THE ARRAY
-		for (int i = 0; i < 80; ++i) {
+		for (int i = 0; i < max; ++i) {
 			spaceLocations[i] = -1;
 		}
 
@@ -52,8 +52,10 @@ int main() {
 
 				// CHECK FOR PUNCTUATION MARKS
 				for (int tmp = 0; tmp < findPunc.size(); ++tmp) {
-					if (input.substr(i - tmp, 1) == findPunc.substr(tmp, 1))
-						chk = 1;
+					for (int p = 0; p < findPunc.size(); ++p) {
+						if (input.substr(i - tmp, 1) == findPunc.substr(p, 1))
+							chk = 1;
+					}
 				}
 
 				// IF NO PUNCTUATION WAS FOUND NEARBY, SAVE VALUE TO ARRAY
