@@ -1,0 +1,80 @@
+// THE LOTTERY
+// 02/24/2016
+
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+using std::cout; using std::endl; using std::cin;
+
+const int size = 10;
+
+// INITIALIZE THE POWERBALL
+// EMPTIES THE ARRAY
+void initialize(int wins[], int size) {
+	int i;
+	i = 0;
+	for (int i = 0; i < size; ++i)
+		wins[i] = -1;
+}
+
+// CHECK YOUR WINNINGS
+void check(int wins[], int size, int guess) {
+	int i;
+	i = 0;
+	bool correct;
+	correct = false;
+	while (i < size) {
+		if (wins[i] == guess) {
+			i = size;
+			correct = true;
+		}
+		else
+			i++;
+	}
+	if (correct == true)
+		cout << "You Win!\n";
+	else
+		cout << "Bad Luck!\n";
+}
+
+// GENERATES LOTTO NUMBERS
+void draw(int wins[], int size) {
+	srand(time(nullptr));
+	int i;
+	i = 0;
+	for (int i = 0; i < size; ++i) {
+		wins[i] = rand() % 100;
+	}
+}
+
+// ENTER YOUR SELECTION
+void entry(int& guess) {
+	cout << "Input your Lotto Guess: ";
+	cin >> guess;
+}
+
+// PRINT OUT YOUR SELECTION
+// AND THE WINNING LOTTO NUMBERS
+void printOut(int wins[], int size, int guess) {
+	int i;
+	i = 0;
+	cout << "The winning lotto numbers are: ";
+	for (int i = 0; i < size; ++i) {
+			cout << " " << wins[i];
+	}
+	cout << "\nThe lotto number you chose was " << guess << endl;
+}
+	
+// MAIN LOTTO FUNCTION
+int main() {
+	cout << "This system will generate 10 lotto numbers"
+		<< " between 0 and 99.\n";
+	int wins[10];
+	initialize(wins, size);
+	draw(wins, 10);
+	int guess;
+	entry(guess);
+	check(wins, size, guess);
+	printOut(wins, size, guess);
+}
