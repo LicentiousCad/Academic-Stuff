@@ -1,0 +1,52 @@
+// Prints out asterisks in pretty shapes!
+// 02/19/2016
+
+#include "figures.h"
+#include <iostream>
+
+using std::cout; using std::endl; using std::cin;
+int main() {
+	bool active = true;
+	while (active == true) {
+		//User input stuff for determining the shape
+		cout << "Input a digit for the shape you would like\n";
+		cout << "Input the number 1 for a square or hollow square\n";
+		cout << "Input the number 2 for a bottom left right triangle\n";
+		cout << "Input the number 3 for a top right right triangle\n";
+		cout << "Input any other number to quit\n";
+		//Where the user actually inputs the shape designation
+		int type;
+		cout << "Input shape number: ";
+		cin >> type;
+		//User input area for determining height and width of the shape
+		int shapeHeight;
+		int shapeWidth;
+		int tracker;
+		cout << "Now decide on a size for your shape: ";
+		cin >> tracker;
+
+		if (type == 1) {
+			char hollowOrFilled;
+			cout << "Hollow or Filled? [h/f]: ";
+			cin >> hollowOrFilled;
+			if (hollowOrFilled == 'f') {
+				filledSquare(tracker);
+			}
+			else if (hollowOrFilled == 'h') {
+				hollowSquare(tracker);
+			}
+			else {
+				cout << "Invalid input!";
+			}
+		}
+		else if (type == 2) {
+			leftTriangle(tracker);
+		}
+		else if (type == 3) {
+			rightTriangle(tracker);
+		}
+		else {
+			active = false;
+		}
+	}
+}
