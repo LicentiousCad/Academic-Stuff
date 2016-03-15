@@ -1,0 +1,75 @@
+// Scientific Calculator
+// 02/10/2016
+
+#include <iostream>
+#include <math.h>
+
+using std::cout; using std::endl; using std::cin;
+
+int main() {
+
+	//Variable for calculation selection
+	int calcSelect = 1;
+
+	while ((calcSelect >= 1) && (calcSelect <= 4)) {
+		//User input stuff for determining which calculation they would like to run
+		cout << "Input a digit for the function you would like to run\n";
+		cout << "Input the number 1 for an Absolute Value calculation\n";
+		cout << "Input the number 2 for a Square Root calculation\n";
+		cout << "Input the number 3 for a Ceiling calculation\n";
+		cout << "Input the number 4 for a Power calculation\n";
+		cout << "Input any other number to quit\n";
+
+		//Variable for starting number and results of calculation
+		double result, base;
+
+		//Where the user actually inputs the function designation
+		cout << "Input which calculation you would like to run: ";
+		cin >> calcSelect;
+		cout << endl;
+
+		//Absolute Value
+		if (calcSelect == 1) {
+			cout << "Input the number you would like the process: ";
+			cin >> base;
+			cout << endl;
+			result = abs(base);
+			cout << "The Absolute Value of " << base << " is " << result << endl << endl;
+		}
+
+		//Square Root
+		else if (calcSelect == 2) {
+			cout << "Input the number you would like the process: ";
+			cin >> base;
+			cout << endl;
+			result = sqrt(base);
+			cout << "The Square Root of " << base << " is " << result << endl << endl;
+		}
+
+		//Ceiling
+		else if (calcSelect == 3) {
+			cout << "Input the number you would like the process: ";
+			cin >> base;
+			cout << endl;
+			result = ceil(base);
+			cout << "The Ceiling of " << base << " is " << result << endl << endl;
+		}
+
+		//Power
+		else if (calcSelect == 4) {
+			double power;
+			cout << "Input the number you would like the process: ";
+			cin >> base;
+			cout << "Input the power you would like raise by: ";
+			cin >> power;
+			cout << endl;
+			result = pow(base, power);
+			cout << base << " raised to the power of " << power << " is " << result << endl << endl;
+		}
+
+		//Invalid calculation selection
+		else {
+			cout << "Quitting...\n";
+		}
+	}
+}
