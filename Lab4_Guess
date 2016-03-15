@@ -1,0 +1,43 @@
+// Guessing Game
+// 02/11/2016
+
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+using std::cout; using std::endl; using std::cin;
+
+int main() {
+	// Generates a seed based on the time
+	srand(time(nullptr));
+
+	// Generating a random number
+	int randomNumber;
+	randomNumber = rand() % 100;
+
+	cout << "I am thinking of a number between 0 and 99.\n";
+	cout << "Can you guess what it is? ";
+
+	// User guess store
+	int guess; guess = 1234;
+
+	// The block of code that handles the actual guessing
+	while (guess != randomNumber) {
+
+		// Only initializes if the arbitrary value is not met
+		if (guess != 1234)
+			cout << "Try again! ";
+
+		// Input for the user's guess
+		cin >> guess;
+
+		if (guess > randomNumber)
+			cout << "Too high!\n";
+
+		else if (guess < randomNumber)
+			cout << "Too low!\n";
+
+		else
+			cout << "You guessed it!\n";
+	}
+}
