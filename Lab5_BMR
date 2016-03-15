@@ -1,0 +1,63 @@
+// Basal Metabolic Rate
+// Kyle Stoots
+// 02/11/2016
+
+#include <iostream>
+
+using std::cout; using std::endl; using std::cin;
+
+// Function for the Basal Metabolic Rate of Men
+int bmrMen(int w, int h, int a) {
+	return (66 + (6.3*w) + (12.9*h) - (6.8*a));
+}
+
+// Function for the Basal Metabolic Rate of Women
+int bmrWomen(int w, int h, int a) {
+	return (655 + (4.3*w) + (4.7*h) - (4.7*a));
+}
+
+int main() {
+
+	// BMR function variable declarations
+	int weight; int age; char gender; 
+	// Extra stuff for height
+	int heightInch; int heightFeet;
+	//Did you know a medium donut is 195 calories?
+	const int donut = 195;
+
+	//User input block
+	cout << "Input your Weight in Pounds: ";
+	cin >> weight;
+	cout << "\nInput your Height in Feet: ";
+	cin >> heightFeet;
+	cout << "\nInput the remaining inches: ";
+	cin >> heightInch;
+	cout << "\nInput your Age: ";
+	cin >> age;
+	cout << "\nInput your Gender [m/f]: ";
+	cin >> gender;
+
+	int height;
+	height = (heightFeet * 12) + heightInch;
+
+	// Variable declarations for the final output
+	int noDonuts; double bmr;
+
+	if (gender == 'm') {
+		bmr = bmrMen(weight, height, age);
+		noDonuts = bmr / donut;
+		cout << "Your BMR is " << bmr << " Calories per Day\n";
+		cout << "You can eat " << noDonuts << " Donuts a day";
+	}
+
+	else if (gender == 'f') {
+		bmr = bmrWomen(weight, height, age);
+		noDonuts = bmr / donut;
+		cout << "Your BMR is " << bmr << " Calories per Day\n";
+		cout << "You can eat " << noDonuts << " Donuts a day";
+	}
+
+	else {
+		cout << "Invalid gender input!";
+	}
+}
