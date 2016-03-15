@@ -1,0 +1,93 @@
+// Prints out asterisks in pretty shapes!
+// 02/03/2016
+
+#include <iostream>
+
+using std::cout; using std::endl; using std::cin;
+
+int main() {
+
+	//User input stuff for determining the shape
+	cout << "Input a digit for the shape you would like\n";
+	cout << "Input the number 1 for a square\n";
+	cout << "Input the number 2 for a right triangle\n";
+	cout << "Input the number 3 for a reversed right triangle\n";
+	cout << "Input the number 4 for a hollow square\n";
+
+	//Where the user actually inputs the shape designation
+	int type;
+	cout << "Input shape number: ";
+	cin >> type;
+
+	//User input area for determining height and width of the shape
+	int shapeHeight;
+	int shapeWidth;
+	int tracker;
+	cout << "Now decide on a size for your shape: ";
+	cin >> tracker;
+	shapeWidth = tracker;
+	shapeHeight = tracker;
+
+	//Code block for a regular square
+	if (type == 1) {
+		for (; shapeHeight > 0; --shapeHeight) {
+			for (; shapeWidth > 0; --shapeWidth) {
+				cout << "*";
+			}
+			cout << endl;
+			shapeWidth = tracker;
+		}
+	}
+
+	//Code block for a right triangle
+	if (type == 2) {
+		int count = 1;					//tracks current iteration
+		shapeWidth = 0;
+		for (; shapeHeight > 0; --shapeHeight) {
+			for (; shapeWidth < count; ++shapeWidth) {
+				cout << "*";
+			}
+			cout << endl;
+			count = shapeWidth + 1;
+			shapeWidth = 0;
+		}
+	}
+
+	//Code block for a reversed right triangle
+	if (type == 3) {
+		int tmp = shapeWidth - tracker; //storage/swapping variable
+		int counter = 0;				//Counts iterations
+		for (; shapeHeight > 0; --shapeHeight) {
+			for (; shapeWidth > 0; --shapeWidth) {
+				while (tmp > 0) {
+					cout << " ";
+					--tmp;
+				}
+				cout << "*";
+			}
+			cout << endl;
+			++counter;
+			tmp = counter;
+			shapeWidth = tracker - tmp;
+		}
+	}
+
+	//Code block for a hollow square
+	if (type ==4) {
+		for (; shapeHeight > 0; --shapeHeight) {
+			for (; shapeWidth > 0; --shapeWidth) {
+				if ((shapeHeight == tracker) || (shapeHeight == 1)) {
+					cout << "*";
+				}
+				else if ((shapeWidth == 1) || (shapeWidth == tracker)) {
+					cout << "*";
+				}
+				else {
+					cout << " ";
+				}
+			}
+			cout << endl;
+			shapeWidth = tracker;
+		}
+	}
+}
