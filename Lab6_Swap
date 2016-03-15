@@ -1,0 +1,48 @@
+// SORTS 3 INTEGERS. NOW WITH MORE FUNCTION.
+// Kyle Stoots
+// 2/24/2016
+
+#include <iostream>
+using std::cin; using std::cout; using std::endl;
+
+void getInput(int& inputOne, int& inputTwo, int& inputThree) {
+	cout << "Enter two integers";
+	cin >> inputOne >> inputTwo >> inputThree;
+}
+
+void swap(int& inputOne, int& inputTwo, int& inputThree) {
+	int tmp;
+	// orders one and two
+	if (inputOne > inputTwo) {
+		tmp = inputOne;
+		inputOne = inputTwo;
+		inputTwo = tmp;
+	}
+
+	// orders two and three
+	if (inputTwo > inputThree) {
+		tmp = inputTwo;
+		inputTwo = inputThree;
+		inputThree = tmp;
+	}
+
+	// orders one and two
+	if (inputOne > inputTwo) {
+		tmp = inputOne;
+		inputOne = inputTwo;
+		inputTwo = tmp;
+	}
+}
+
+void outputResult(int inputOne, int inputTwo, int inputThree) {
+	cout << "The sorted numbers are: ";
+	cout << inputOne << " " << inputTwo << " " << inputThree << endl;
+}
+
+int main() {
+
+	int inputOne; int inputTwo; int inputThree;
+	getInput(inputOne, inputTwo, inputThree);
+	swap(inputOne, inputTwo, inputThree);
+	outputResult(inputOne, inputTwo, inputThree);
+}
