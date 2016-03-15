@@ -1,0 +1,156 @@
+// Input your number, and this program will output your number in english!
+// 1/28/2016
+
+#include <iostream>
+
+using std::cin; using std::cout; using std::endl;
+
+int main(){
+
+	cout << "Input number between 01 to 99: ";
+	int number;
+	cin >> number;
+
+	int singles = number % 10;
+	int tens = number / 10;
+
+	//Boolean to determine whether or not it is a tens number
+	bool oneTen = (tens == 1);
+
+	//Conditional statement for cout a value between 10 and 19
+	if (oneTen == true)
+		switch (tens) {
+
+		case 1:
+			switch (singles) {
+			case 0:
+				cout << "Ten" << std::endl;
+				break;
+
+			case 1:
+				cout << "Eleven" << std::endl;
+				break;
+
+			case 2:
+				cout << "Twelve" << std::endl;
+				break;
+
+			case 3:
+				cout << "Thirteen" << std::endl;
+				break;
+
+			case 4:
+				cout << "Fourteen" << std::endl;
+				break;
+
+			case 5:
+				cout << "Fifteen" << std::endl;
+				break;
+
+			case 6: 
+				cout << "Sixteen" << std::endl;
+				break;
+
+			case 7:
+				cout << "Seventeen" << std::endl;
+				break;
+
+			case 8:
+				cout << "Eighteen" << std::endl;
+				break;
+
+			case 9:
+				cout << "Nineteen" << std::endl;
+				break;
+
+			}
+	}
+
+	//Boolean value to determine if value is greater than 19
+	bool twoTens = (tens >= 2);
+
+	//Conditional statement to cout the tens value of numbers greater than 19
+	if (twoTens == true)
+		switch (tens) {
+
+		case 2:
+			cout << "Twenty-";
+			break;
+
+		case 3:
+			cout << "Thirty-";
+			break;
+
+		case 4:
+			cout << "Fourty-";
+			break;
+
+		case 5:
+			cout << "Fifty-";
+			break;
+
+		case 6:
+			cout << "Sixty-";
+			break;
+
+		case 7:
+			cout << "Seventy-";
+			break;
+
+		case 8:
+			cout << "Eighty-";
+			break;
+
+		case 9:
+			cout << "Ninety-";
+			break;
+
+	}
+
+	//Boolean value to determine if tens is less than 10
+	bool zeroTens = (tens == 0);
+
+	//Boolean prints a singles value, either for cin values greater than 19, or less than 10.
+	if (zeroTens || twoTens) {
+		switch (singles) {
+
+		case 1:
+			cout << "One" << std::endl;
+			break;
+	
+		case 2:
+			cout << "Two" << std::endl;
+			break;
+		
+		case 3:
+			cout << "Three" << std::endl;
+			break;
+
+		case 4:
+			cout << "Four" << std::endl;
+			break;
+
+		case 5:
+			cout << "Five" << std::endl;
+			break;
+
+		case 6:
+			cout << "Six" << std::endl;
+			break;
+
+		case 7:
+			cout << "Seven" << std::endl;
+			break;
+			
+		case 8:
+			cout << "Eight" << std::endl;
+			break;
+
+		case 9:
+			cout << "Nine" << std::endl;
+			break;
+		}
+
+	}
+
+}
