@@ -1,0 +1,10 @@
+//Displays a greeting
+//1/22/2016
+
+#include <iostream>
+
+using std::cout; using std::endl;
+
+int main() {
+	cout << "Hello, How are you?" << endl;
+}
