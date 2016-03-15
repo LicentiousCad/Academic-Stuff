@@ -1,0 +1,89 @@
+// Prints out asterisks in pretty shapes!
+// NOW IN MULTIPLE FILES!
+// 02/19/2016
+
+#include "figures.h"
+#include <iostream>
+
+using std::cout; using std::endl; using std::cin;
+
+//Code block for a regular square
+void filledSquare(int tracker) {
+	int shapeHeight;
+	int shapeWidth;
+	shapeWidth = tracker;
+	shapeHeight = tracker;
+
+	for (; shapeHeight > 0; --shapeHeight) {
+		for (; shapeWidth > 0; --shapeWidth) {
+			cout << "*";
+		}
+		cout << endl;
+		shapeWidth = tracker;
+	}
+}
+
+//Code block for a right triangle
+void leftTriangle(int tracker) {
+	int shapeHeight;
+	int shapeWidth;
+	shapeWidth = tracker;
+	shapeHeight = tracker;
+	int count = 1;                  //tracks current iteration
+	shapeWidth = 0;
+	for (; shapeHeight > 0; --shapeHeight) {
+		for (; shapeWidth < count; ++shapeWidth) {
+			cout << "*";
+		}
+		cout << endl;
+		count = shapeWidth + 1;
+		shapeWidth = 0;
+	}
+}
+
+//Code block for a reversed right triangle
+void rightTriangle(int tracker) {
+	int shapeHeight;
+	int shapeWidth;
+	shapeWidth = tracker;
+	shapeHeight = tracker;
+	int tmp = shapeWidth - tracker; //storage/swapping variable
+	int counter = 0;                //Counts iterations
+	for (; shapeHeight > 0; --shapeHeight) {
+		for (; shapeWidth > 0; --shapeWidth) {
+			while (tmp > 0) {
+				cout << " ";
+				--tmp;
+			}
+			cout << "*";
+		}
+		cout << endl;
+		++counter;
+		tmp = counter;
+		shapeWidth = tracker - tmp;
+	}
+}
+
+//Code block for a hollow square
+void hollowSquare(int tracker) {
+	int shapeHeight;
+	int shapeWidth;
+	shapeWidth = tracker;
+	shapeHeight = tracker;
+
+	for (; shapeHeight > 0; --shapeHeight) {
+		for (; shapeWidth > 0; --shapeWidth) {
+			if ((shapeHeight == tracker) || (shapeHeight == 1)) {
+				cout << "*";
+			}
+			else if ((shapeWidth == 1) || (shapeWidth == tracker)) {
+				cout << "*";
+			}
+			else {
+				cout << " ";
+			}
+		}
+		cout << endl;
+		shapeWidth = tracker;
+	}
+}
