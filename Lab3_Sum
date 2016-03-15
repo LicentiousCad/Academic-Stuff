@@ -1,0 +1,25 @@
+// Takes all positive inputs, and sums them together.
+// 2/3/2016
+
+#include <iostream>
+
+using std::cin; using std::cout; using std::endl;
+
+int main() {
+	cout << "Input number [0 to quit]: ";
+	int n;
+	cin >> n;
+
+	//Tracking Variable
+	int track = 0;
+
+	while (n != 0) {
+		if (n > 0) {
+			track += n;
+		}
+		cout << "Another number? [0 to quit]: ";
+		cin >> n;
+	}
+
+	cout << "Total!: " << track << endl;
+}
