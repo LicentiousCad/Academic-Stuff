@@ -21,9 +21,9 @@ private:
 
 // contains ship's coordinates (location) and whether is was sunk
 
-class ship {
+class Ship {
 public:
-	ship(); // void constructor, sets sunk=false
+	void ship(); // void constructor, sets sunk=false
 	bool match(const Location&) const; // returns true if this location matches
 									   // the ship's location
 	bool isSunk() const { return sunk; } // checks to see if the ship is sunk
@@ -53,7 +53,7 @@ private:
 	int check(const Location &);          // returns index of the ship 
 										  // that matches location
 										  // -1 if none match
-	ship ships[fleetSize];        // battleships of the fleet
+	Ship ships[fleetSize];        // battleships of the fleet
 };
 
-#endif /* BATTLESHIP_H_ */
+#endif BATTLESHIP_H_
