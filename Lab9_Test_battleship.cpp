@@ -28,18 +28,18 @@ bool compare(Location one, Location two) {
 		return false;
 }
 
-ship::ship() {
+void Ship::ship() {
 	sunk = false;
 }
-void ship::setLocation(const Location& spot) {
+void Ship::setLocation(const Location& spot) {
 	loc = spot;
 }
 
-bool ship::match(const Location& userShot) const {
+bool Ship::match(const Location& userShot) const {
 	return compare(loc, userShot);
 }
 
-void ship::printShip(void) const {
+void Ship::printShip(void) const {
 	cout << endl;
 	loc.print();
 	if (sunk == true)
@@ -47,7 +47,7 @@ void ship::printShip(void) const {
 	else
 		cout << " Not Sunk" << endl;
 }
-void ship::sink() {
+void Ship::sink() {
 	sunk = true;
 }
 
