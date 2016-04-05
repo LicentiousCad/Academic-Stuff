@@ -12,7 +12,7 @@ int main() {
 	//
 	// checking location object
 	// 
-	srand(time(NULL));
+	srand(time(nullptr));
 	Location mySpot, userShot;
 	mySpot.pick(); // selecting a new random location
 
@@ -34,7 +34,7 @@ int main() {
 
 	// uncomment this part once you are done debugging above code
 
-	ship myShip;
+	Ship myShip;
 
 	myShip.setLocation(mySpot); // placing ship at mySpot location
 
